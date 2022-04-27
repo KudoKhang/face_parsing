@@ -30,12 +30,10 @@ keywords = {Face parsing, In-the-wild dataset, Head pose augmentation, Tanh-pola
 * [Numpy](https://www.numpy.org/): `$pip3 install numpy`
 * [OpenCV](https://opencv.org/): `$pip3 install opencv-python`
 * [PyTorch](https://pytorch.org/): `$pip3 install torch torchvision`
-* [ibug.roi_tanh_warping](https://github.com/ibug-group/roi_tanh_warping): See this repository for details: [https://github.com/ibug-group/roi_tanh_warping](https://github.com/ibug-group/roi_tanh_warping).
-* [ibug.face_detection](https://github.com/hhj1897/face_detection) (only needed by the test script): See this repository for details: [https://github.com/hhj1897/face_detection](https://github.com/hhj1897/face_detection).
 
 ## How to Install
 ```bash
-git clone https://github.com/hhj1897/face_parsing
+git clone https://github.com/KudoKhang/face_parsing
 cd face_parsing
 git lfs pull
 pip install -e .
@@ -43,17 +41,18 @@ pip install -e .
 
 ## How to Test
 ```bash
-python face_warping_test.py -i 0 -e rtnet50 --decoder fcn -n 11 -d cuda:0
+python inference.py
 ```
-Command-line arguments:
+Change mode here:
+``` python
+if __name__ == '__main__':
+    image('image_test/g2.jpg')
+    # video('dathao1.mp4')
+    # webcam()
+    # process_with_folder(input_dir=image_test, output_dir=image_out)
 ```
--i VIDEO: Index of the webcam to use (start from 0) or
-          path of the input video file
--d: Device to be used by PyTorch (default=cuda:0)
--e: Encoder (default=rtnet50)
---decoder: Decoder (default=fcn)
--n: Number of facial classes, can be 11 or 14 for now (default=11)
-```
+
+
 ## iBugMask Dataset
 The training and testing images, bounding boxes, landmarks, and parsing maps can be found in the following:
 
@@ -97,4 +96,4 @@ Label map for 14 classes:
 
 ## Visualisation
 ![](./imgs/vis1.jpg)
-![](./imgs/vis2.jpg)
+![](./image_out/b10.png)
